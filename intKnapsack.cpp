@@ -64,7 +64,7 @@ void printDPTable(Items &itemList) {
 
 void readFile(ifstream &inputFile, Items &itemList) {
     /*
-    Initialize the data for the Integer Knapsack problem
+    Read the file data and initialize the data for the Integer Knapsack problem
     Parameters:
         inputFile <&ifstream>: File to read sack information from
         itemList <&itemList>: Stores the values and weights of each respecitve item
@@ -124,14 +124,14 @@ void printItemsMaxValue(Items &itemList) {
     */
     int maxVal = itemList.dpTable[itemList.numItems][itemList.sackWeight];
 
-    cout << "Maximum Knapsack Value: " << maxVal << endl;
-    // cout << maxVal << endl;
+    // cout << "Maximum Knapsack Value: " << maxVal << endl;
+    cout << maxVal << endl;
 
     int shiftWeight = itemList.sackWeight;
     for(int i = itemList.numItems; i > 0 && maxVal > 0; i--) {
         if (maxVal != itemList.dpTable[i - 1][shiftWeight]) {
-            cout << "Item # " << i << " | Value: " << itemList.values[i] << "| Weight: " << itemList.weights[i] << endl;
-            // cout << itemList.weights[i] << " " << itemList.values[i];
+            // cout << "Item # " << i << " | Value: " << itemList.values[i] << "| Weight: " << itemList.weights[i] << endl;
+            cout << itemList.weights[i] << " " << itemList.values[i] << endl;
 
             maxVal -= itemList.values[i];
             shiftWeight -= itemList.weights[i];
@@ -174,12 +174,12 @@ int main(int argc, char *argv[]) {
     readFile(inputFile, itemList);
 
     //Uncomment to see the Value/Weight Pairs
-    printItemWeightPair(itemList);
+    // printItemWeightPair(itemList);
 
     intKnapSack(itemList);
 
     //Uncomment to see the whole DP Table
-    printDPTable(itemList);
+    // printDPTable(itemList);
 
     printItemsMaxValue(itemList);
 
